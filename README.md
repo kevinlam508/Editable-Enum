@@ -1,8 +1,8 @@
 # Unity-Editable-Enum
  
 A simple scriptable object to generate and update an enumerator from the Unity inspector.  
-
 Made because of multiple cases of wanting to edit an enumerator without leaving the Unity editor. 
+Made in Unity 2018.3.3f1.  
 
 Usage  
 -----
