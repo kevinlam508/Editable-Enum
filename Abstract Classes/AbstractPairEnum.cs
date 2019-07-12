@@ -12,16 +12,16 @@ namespace EditableEnum{
 	 * Create two classes that inherit from AbstractPairEnum and AbstractPair that 
 	 *    set the concrete type of the value to make a new pair.
 	 */
-	public abstract class AbstractPairEnum<T, V> : AbstractEnum<V>
-			where V : AbstractPair<T>{
+	public abstract class AbstractPairEnum<TValue, TPair> : AbstractEnum<TPair>
+			where TPair : AbstractPair<TValue>{
 
 		protected override string GetValueName(int index){
 	        return values[index].name;
 	    }
 	}
 
-	public abstract class AbstractPair<T>{
+	public abstract class AbstractPair<TValue>{
 		public string name;
-		public T value;
+		public TValue value;
 	}
 }

@@ -24,7 +24,7 @@ namespace EditableEnum{
         public abstract void UpdateEnumerator();
     }
 
-    public abstract class AbstractEnum<T> : AbstractEnum{
+    public abstract class AbstractEnum<TValue> : AbstractEnum{
         public enum AccessType { None, Public, Protected, Internal, ProtectedInternal, Private, PrivateProtected}
     	private static string[] accessStrings = {
     		"",
@@ -59,12 +59,12 @@ namespace EditableEnum{
         [Tooltip("Access modifier of the enumerator if listed. Can only be none, public, or internal if not in a class")]
         public AccessType enumAccessType;
         [Tooltip("The values in order.")]
-        public List<T> values;
+        public List<TValue> values;
 
         /*
          * returns the file path for the generated file
          */
-        public string GeneratedFilePath{ 
+        public virtual string GeneratedFilePath{ 
         	get{
     	    	string origPath = AssetDatabase.GetAssetPath(this);
     	    	int idx = origPath.LastIndexOf('/');
@@ -104,7 +104,7 @@ namespace EditableEnum{
         /*
          * returns the C# code for the enumerator
          */
-        private string GenerateCode(){
+        protected virtual string GenerateCode(){
     		string code = "";
         	string tabs = "";
         	// open namespace
@@ -161,7 +161,7 @@ namespace EditableEnum{
         /*
          * returns true if the enumerator can be made
          */
-        public bool IsValid(){
+        public virtual bool IsValid(){
         	bool res = true;
         	// check file name
     		if(fileName.Length == 0 && fileName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0){
